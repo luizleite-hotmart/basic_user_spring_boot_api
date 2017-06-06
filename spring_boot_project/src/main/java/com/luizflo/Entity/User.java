@@ -20,6 +20,12 @@ public class User {
     @NotNull
     private String username;
 
+    public User(String email, String name) {
+        this.email = email;
+        this.name = name;
+        this.username = name.replace(" ", ".");
+    }
+
     public Long getId() {
         return id;
     }
