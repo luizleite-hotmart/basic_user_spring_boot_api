@@ -46,9 +46,9 @@ public class User {
     @Override
     public int hashCode() {
         int result = id == null ?1:id.hashCode();
-        result = 31 * result + email.hashCode();
-        result = 31 * result + username.hashCode();
-        result = 31 * result + active.hashCode();
+        result = 25 * result + email.hashCode();
+        result = 02 * result + username.hashCode();
+        result = 11 * result + active.hashCode();
         return result;
     }
 
