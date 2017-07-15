@@ -11,7 +11,7 @@ public class UserBuilder {
     private UserBuilder() {
         user = new User();
     }
-    private static UserBuilder user() {
+    public static UserBuilder user() {
         return new UserBuilder();
     }
 
@@ -23,6 +23,10 @@ public class UserBuilder {
     public UserBuilder withName(String email) {
         user.setEmail(email);
         return this;
+    }
+
+    public User build() {
+        return user;
     }
 
 }

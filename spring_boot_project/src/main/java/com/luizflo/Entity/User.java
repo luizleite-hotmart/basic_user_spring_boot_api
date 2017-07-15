@@ -26,7 +26,6 @@ public class User {
     public User(String email, String name) {
         this.email = email;
         this.name = name;
-        this.username = name.replace(" ", ".");
     }
 
     @Override
@@ -72,6 +71,7 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+        this.setUsername(name);
     }
 
     public String getUsername() {
@@ -79,7 +79,7 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.replace(" ", ".");
     }
 
     public Boolean getActive() {
