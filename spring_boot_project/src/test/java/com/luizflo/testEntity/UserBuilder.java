@@ -21,7 +21,7 @@ public class UserBuilder {
     }
 
     public UserBuilder withName(String email) {
-        user.setEmail(email);
+        user.setName(email);
         return this;
     }
 

@@ -17,9 +17,9 @@ public class UsersPlaceApplicationTests {
     public void firstTest() {
         User user = user()
                         .withEmail("email@fromUser.com")
-                        .withName("not so hard")
+                        .withName("name so cool")
                         .build();
-        Assert.assertEquals(user.getUsername(), "name.so.cool");
+        Assert.assertEquals("name.so.cool", user.getUsername());
 
     }
 
