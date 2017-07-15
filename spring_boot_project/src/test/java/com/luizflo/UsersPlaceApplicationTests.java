@@ -18,10 +18,11 @@ public class UsersPlaceApplicationTests {
 
     }
 
-    private static User buildSomeUser() {
-        User user = new User("email@email.com", "name so cool");
-        return user;
+    @Test
+    public void ucodeMustBeDifferentForEachUser() {
+        User user = buildSomeUser();
+        User user2 = buildSomeUser();
+        user2.setEmail("teste@newemail.com");
+        Assert.assertNotEquals(user.getUcode(), user2.getUcode());
     }
-
-
 }
