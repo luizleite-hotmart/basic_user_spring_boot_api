@@ -11,11 +11,18 @@ public class UserBuilder {
     private UserBuilder() {
         user = new User();
     }
-
-    public User buildSomeUser() {
-        User user = new User("email@email.com", "name so cool");
-        return user;
+    private static UserBuilder user() {
+        return new UserBuilder();
     }
 
+    public UserBuilder withEmail(String email) {
+        user.setEmail(email);
+        return this;
+    }
+
+    public UserBuilder withName(String email) {
+        user.setEmail(email);
+        return this;
+    }
 
 }

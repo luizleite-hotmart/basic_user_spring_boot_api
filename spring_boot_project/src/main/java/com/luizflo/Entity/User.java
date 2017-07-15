@@ -20,13 +20,13 @@ public class User {
     @NotNull
     private String username;
     private Boolean active = true;
-    private String ucode;
+
+    public User() { }
 
     public User(String email, String name) {
         this.email = email;
         this.name = name;
         this.username = name.replace(" ", ".");
-        this.ucode = String.valueOf(this.hashCode());
     }
 
     @Override
@@ -39,8 +39,7 @@ public class User {
         if (!id.equals(user.id)) return false;
         if (!email.equals(user.email)) return false;
         if (!username.equals(user.username)) return false;
-        if (!active.equals(user.active)) return false;
-        return ucode.equals(user.ucode);
+        return !active.equals(user.active);
     }
 
     @Override
