@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    private static final String simple = "Lets GO!!! %s!";
-
     @RequestMapping(method = RequestMethod.GET, path = "/entity")
     public User simpleTest(@RequestParam(value = "name", defaultValue = "easy") String name) {
         return new User("xp.luiz@gmail.com", name);
