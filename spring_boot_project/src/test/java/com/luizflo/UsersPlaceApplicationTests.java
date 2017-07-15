@@ -11,16 +11,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class UsersPlaceApplicationTests {
 
-	@Test
-	public void firstTest() {
-		User user = buildSomeUser();
-		Assert.assertEquals(user.getUsername(), "name.so.cool");
+    @Test
+    public void firstTest() {
+        User user = buildSomeUser();
+        Assert.assertEquals(user.getUsername(), "name.so.cool");
 
-	}
+    }
 
-	private static User buildSomeUser() {
-		User user = new User("email@email.com", "name so cool");
-		return user;
-	}
+    private static User buildSomeUser() {
+        User user = new User("email@email.com", "name so cool");
+        return user;
+    }
+
 
 }
