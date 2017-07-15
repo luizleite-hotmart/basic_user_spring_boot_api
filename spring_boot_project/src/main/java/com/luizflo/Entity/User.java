@@ -90,12 +90,4 @@ public class User {
         this.active = active;
     }
 
-    public String getUcode() {
-        return ucode;
-    }
-
-    public void setUcode(String ucode) {
-        this.ucode = ucode;
-    }
-
 }
