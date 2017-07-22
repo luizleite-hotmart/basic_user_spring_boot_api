@@ -2,9 +2,6 @@ package com.luizflo.testEntity;
 
 import com.luizflo.Entity.User;
 
-/**
- * Created by luizoliveira on 15/07/17.
- */
 public class UserBuilder {
 
     private final User user;
