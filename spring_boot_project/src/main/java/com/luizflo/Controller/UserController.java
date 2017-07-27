@@ -1,6 +1,9 @@
 package com.luizflo.Controller;
 
 import com.luizflo.Entity.User;
+import com.luizflo.Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +19,8 @@ import javax.websocket.server.PathParam;
 @RequestMapping("/users")
 public class UserController {
 
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET, path = "/entity")
     public User returnUserModel(@RequestParam(value = "name", defaultValue = "easy") String name) {
@@ -23,7 +28,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{userId}")
-    public User findUserById(@PathParam(value = "userId") Long userId) {
-
+    public User findUserById(@PathVariable(value = "userId") Long userId) {
+        return userService.findUserById(userId);
     }
 }
