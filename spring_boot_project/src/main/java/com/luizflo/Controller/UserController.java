@@ -3,6 +3,8 @@ package com.luizflo.Controller;
 import com.luizflo.Entity.User;
 import com.luizflo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,5 +32,10 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET, path = "/{userId}")
     public User findUserById(@PathVariable(value = "userId") Long userId) {
         return userService.findUserById(userId);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> createUser() {
+        return new ResponseEntity<String>("ok", HttpStatus.CREATED);
     }
 }
