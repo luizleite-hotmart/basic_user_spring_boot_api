@@ -2,6 +2,7 @@ package com.luizflo.Entity;
 
 
 import com.sun.istack.internal.NotNull;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -97,7 +98,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = new password;
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 
 }
