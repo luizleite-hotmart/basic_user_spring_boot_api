@@ -37,6 +37,11 @@ public class UserController {
         return userService.findUserById(userId);
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/{userEmail}")
+    public User findUserByEmail(@PathVariable(value = "userEmail") String userEmail) {
+        return userService.findUserByEmail(userEmail);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@Valid @RequestBody UserVo userVo) {
         return new ResponseEntity<String>("ok", HttpStatus.CREATED);
