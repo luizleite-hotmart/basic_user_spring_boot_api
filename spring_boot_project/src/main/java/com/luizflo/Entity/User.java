@@ -20,6 +20,7 @@ public class User {
     @NotNull
     private String username;
     private Boolean active = true;
+    private String password;
 
     public User() { }
 
