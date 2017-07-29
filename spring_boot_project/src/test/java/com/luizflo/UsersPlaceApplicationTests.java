@@ -41,7 +41,10 @@ public class UsersPlaceApplicationTests {
         User user = user()
                         .withName("not so hard")
                         .withEmail("email@fromUser.com")
+                        .withPassword("notpassword")
                         .build();
+        Assert.assertEquals(60, user.getPassword().length());
+        Assert.assertNotEquals("notpassword",user.getPassword());
 
     }
 }
