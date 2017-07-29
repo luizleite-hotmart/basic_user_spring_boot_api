@@ -26,13 +26,22 @@ public class UsersPlaceApplicationTests {
     @Test
     public void ucodeMustBeDifferentForEachUser() {
         User user = user()
-                        .withEmail("email@fromUser.com")
                         .withName("not so hard")
+                        .withEmail("email@fromUser.com")
                         .build();
         User user2 = user()
                         .withEmail("email@fromUser2.com")
                         .withName("not so hard")
                         .build();
         Assert.assertNotEquals(user.hashCode(), user2.hashCode());
+    }
+
+    @Test
+    public void checkSizePassword() {
+        User user = user()
+                        .withName("not so hard")
+                        .withEmail("email@fromUser.com")
+                        .build();
+
     }
 }

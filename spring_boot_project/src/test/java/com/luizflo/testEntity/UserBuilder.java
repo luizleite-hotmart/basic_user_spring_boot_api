@@ -22,6 +22,11 @@ public class UserBuilder {
         return this;
     }
 
+    public UserBuilder withPassword(String password) {
+        user.setPassword(password);
+        return this;
+    }
+
     public User build() {
         return user;
     }
