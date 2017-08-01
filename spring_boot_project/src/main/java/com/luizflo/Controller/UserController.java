@@ -44,6 +44,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@Valid @RequestBody UserVo userVo) {
+        userService.createUser(userVo);
         return new ResponseEntity<String>("ok", HttpStatus.CREATED);
     }
 }
