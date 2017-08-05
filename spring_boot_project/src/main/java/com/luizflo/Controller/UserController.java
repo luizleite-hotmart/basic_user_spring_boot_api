@@ -44,12 +44,18 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@Valid @RequestBody UserVO userVO) {
         userService.createUser(userVO);
-        return new ResponseEntity<String>("ok", HttpStatus.CREATED);
+        return new ResponseEntity<String>("ok", HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<?> updateUser(@Valid @RequestBody UserVO userVO) {
         userService.updateUser(userVO);
-        return new ResponseEntity<String>("ok", HttpStatus.CREATED);
+        return new ResponseEntity<String>("ok", HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteUser(@Valid @RequestBody UserVO userVO) {
+        userService.deleteUser(userVO.getId());
+        return new ResponseEntity<String>("ok", HttpStatus.OK);
     }
 }
