@@ -49,7 +49,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<?> updateUser(@Valid @RequestBody UserVO userVO) {
-        userService.createUser(userVO);
+        userService.updateUser(userVO);
         return new ResponseEntity<String>("ok", HttpStatus.CREATED);
     }
 }
