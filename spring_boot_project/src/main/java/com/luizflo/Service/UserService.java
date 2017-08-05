@@ -28,4 +28,16 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void updateUser(UserVo userVo) {
+        User user = userRepository.findOne(userVo.getId());
+        user.setName(userVo.getName());
+        userRepository.save(user);
+    }
+
+    public void deleteUser(Long userId) {
+        User user = userRepository.findOne(userId);
+        user.setActive(false);
+        userRepository.save(user);
+    }
+
 }
