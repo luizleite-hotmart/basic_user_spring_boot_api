@@ -2,7 +2,7 @@ package com.luizflo.Service;
 
 import com.luizflo.Entity.User;
 import com.luizflo.Repository.UserRepository;
-import com.luizflo.Vo.UserVo;
+import com.luizflo.Vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,15 +22,15 @@ public class UserService {
         return userRepository.findUserByEmail(email);
     }
 
-    public void createUser(UserVo userVo) {
-        User user = new User(userVo.getEmail(), userVo.getName());
-        user.setPassword(userVo.getPassword());
+    public void createUser(UserVO userVO) {
+        User user = new User(userVO.getEmail(), userVO.getName());
+        user.setPassword(userVO.getPassword());
         userRepository.save(user);
     }
 
-    public void updateUser(UserVo userVo) {
-        User user = userRepository.findOne(userVo.getId());
-        user.setName(userVo.getName());
+    public void updateUser(UserVO userVO) {
+        User user = userRepository.findOne(userVO.getId());
+        user.setName(userVO.getName());
         userRepository.save(user);
     }
 

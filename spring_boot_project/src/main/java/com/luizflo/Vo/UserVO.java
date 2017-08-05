@@ -2,7 +2,7 @@ package com.luizflo.Vo;
 
 import javax.validation.constraints.NotNull;
 
-public class UserVo {
+public class UserVO {
 
     private Long id;
     @NotNull

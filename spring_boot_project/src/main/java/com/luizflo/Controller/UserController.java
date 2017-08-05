@@ -2,7 +2,7 @@ package com.luizflo.Controller;
 
 import com.luizflo.Entity.User;
 import com.luizflo.Service.UserService;
-import com.luizflo.Vo.UserVo;
+import com.luizflo.Vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 
 /**
  * Created by luizoliveira on 15/07/17.
@@ -43,14 +42,14 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> createUser(@Valid @RequestBody UserVo userVo) {
-        userService.createUser(userVo);
+    public ResponseEntity<?> createUser(@Valid @RequestBody UserVO userVO) {
+        userService.createUser(userVO);
         return new ResponseEntity<String>("ok", HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<?> updateUser(@Valid @RequestBody UserVo userVo) {
-        userService.createUser(userVo);
+    public ResponseEntity<?> updateUser(@Valid @RequestBody UserVO userVO) {
+        userService.createUser(userVO);
         return new ResponseEntity<String>("ok", HttpStatus.CREATED);
     }
 }
