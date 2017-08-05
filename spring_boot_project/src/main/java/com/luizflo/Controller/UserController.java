@@ -47,4 +47,10 @@ public class UserController {
         userService.createUser(userVo);
         return new ResponseEntity<String>("ok", HttpStatus.CREATED);
     }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<?> updateUser(@Valid @RequestBody UserVo userVo) {
+        userService.createUser(userVo);
+        return new ResponseEntity<String>("ok", HttpStatus.CREATED);
+    }
 }
