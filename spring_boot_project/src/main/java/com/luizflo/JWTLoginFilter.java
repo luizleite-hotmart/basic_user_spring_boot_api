@@ -24,9 +24,6 @@ import java.util.Collections;
  */
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
-    @Autowired
-    private UserService userService;
-
     public JWTLoginFilter(String url, AuthenticationManager authManager) {
         super(new AntPathRequestMatcher(url));
         setAuthenticationManager(authManager);
@@ -38,7 +35,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             throws AuthenticationException, IOException, ServletException {
         AccountCredentials creds = new ObjectMapper()
                 .readValue(req.getInputStream(), AccountCredentials.class);
-        User user = userService.findUserByEmail(creds.getUsername());
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
                         creds.getUsername(),
@@ -56,4 +52,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
         TokenAuthenticationService
                 .addAuthentication(res, auth.getName());
     }
+
+
 }
