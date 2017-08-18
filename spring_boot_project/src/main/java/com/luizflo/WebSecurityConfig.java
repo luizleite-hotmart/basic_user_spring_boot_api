@@ -50,4 +50,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .password("password")
                 .roles("ADMIN");
     }
+
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        final JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        jwtAccessTokenConverter.setSigningKey("ASDFASFsdfsdfsdfsfadsf234asdfasfdas");
+        return jwtAccessTokenConverter;
+    }
+
 }
