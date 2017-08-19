@@ -1,18 +1,31 @@
 package com.luizflo.Service;
 
+import com.luizflo.Entity.Role;
 import com.luizflo.Entity.User;
+import com.luizflo.Repository.RoleRepository;
 import com.luizflo.Repository.UserRepository;
 import com.luizflo.Vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
-public class UserService {
+public class UserService implements UserDetailsService{
 
     @Autowired(required = true)
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     public User findUserById(Long id) {
         return userRepository.findOne(id);
@@ -40,4 +53,21 @@ public class UserService {
         userRepository.save(user);
     }
 
+    private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.getActive(), true, true, true, authorities);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        User user = userRepository.findUserByEmail(userName);
+        List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
+        return buildUserForAuthentication(user, authorities);
+    }
+
+    private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
+        Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
+        for (Role role : userRoles) {
+            roles.add(new SimpleGrantedAuthority(role.getRole()));
+        }
+    }
 }
