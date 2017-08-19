@@ -1,4 +1,4 @@
-package com.luizflo;
+package com.luizflo.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.luizflo.Entity.AccountCredentials;
@@ -8,7 +8,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -40,7 +39,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
         AccountCredentials creds = new ObjectMapper()
                 .readValue(req.getInputStream(), AccountCredentials.class);
 
-        UserDetails userDetails = this.userDetailsService.loadUserByUsername(creds.getUsername());
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
                         creds.getUsername(),

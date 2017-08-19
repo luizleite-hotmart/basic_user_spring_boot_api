@@ -5,6 +5,7 @@ import com.luizflo.Entity.User;
 import com.luizflo.Repository.RoleRepository;
 import com.luizflo.Repository.UserRepository;
 import com.luizflo.Vo.UserVO;
+import com.luizflo.security.JwtUserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -61,8 +62,12 @@ public class UserService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         User user = userRepository.findUserByEmail(userName);
-        List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-        return buildUserForAuthentication(user, authorities);
+
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("No user found with username '%s'.", userName));
+        } else {
+            return JwtUserFactory.create(user);
+        }
     }
 
     private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {

@@ -1,4 +1,4 @@
-package com.luizflo;
+package com.luizflo.security;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;

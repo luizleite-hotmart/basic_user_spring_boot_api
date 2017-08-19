@@ -1,4 +1,4 @@
-package com.luizflo;
+package com.luizflo.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
