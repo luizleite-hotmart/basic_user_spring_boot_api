@@ -2,13 +2,14 @@ package com.luizflo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.luizflo.Entity.AccountCredentials;
-import com.luizflo.Entity.User;
 import com.luizflo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -24,6 +25,9 @@ import java.util.Collections;
  */
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
+    @Autowired
+    private UserDetailsService userDetailsService = new UserService();
+
     public JWTLoginFilter(String url, AuthenticationManager authManager) {
         super(new AntPathRequestMatcher(url));
         setAuthenticationManager(authManager);
@@ -35,6 +39,8 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             throws AuthenticationException, IOException, ServletException {
         AccountCredentials creds = new ObjectMapper()
                 .readValue(req.getInputStream(), AccountCredentials.class);
+
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(creds.getUsername());
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
                         creds.getUsername(),
