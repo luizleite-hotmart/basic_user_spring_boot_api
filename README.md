@@ -4,4 +4,4 @@ This project would be used to manage and consult user data from any project that
 
 #DEPENDENCIES
 
-PROJECT Using JWT for auth using UserService implements UserDetailsService
+PROJECT Using JWT for auth using UserService implements UserDetailsService because it's easy.
